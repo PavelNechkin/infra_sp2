@@ -17,43 +17,48 @@ YAMDB
 git clone ...
 ```
 
-```
-cd api_yamdb
-```
+В корневой директории клонированного репозитория создать файл .env. Файл должен нужно оформить в соответствии с примером:
+DB_NAME=...
+POSTGRES_USER=...
+POSTGRES_PASSWORD=...
+DB_HOST=...
+DB_PORT=...
+SECRET_KEY='секретный_ключь_50_символов'
+DEBUG=False/True
+ALLOWED_HOSTS='...'
 
-Cоздать и активировать виртуальное окружение:
 
-```
-python -m venv env
-```
-
-```
-source venv/Scripts/activate
-```
-
-Установить зависимости из файла requirements.txt:
+Запустить docker-compose, выполнив команду из корневой директоии:
 
 ```
-python -m pip install --upgrade pip
+docker-compose up -d
 ```
 
-```
-pip install -r requirements.txt
-```
 
 Выполнить миграции:
 
 ```
-python manage.py migrate
+docker-compose exec web python manage.py makemigrations --noinput
+docker-compose exec web python manage.py migrate --noinput
 ```
 
-Запустить проект:
+
+Загрузить статику:
 
 ```
-python manage.py runserver
+docker-compose exec web python manage.py collectstatic --no-input
 ```
 
-### Примеры:
+### Авторы проекта:
 
-Примеры и инструкцию можмо посмотреть тут:
-http://127.0.0.1:8000/redoc/
+Рафаэль Асланян - Auth/Users
+Нечкин Павел - Categories/Genres/Titles
+Алан Рысов - Review/Comments
+Алексей Кашлинов - Ревью проекта
+Андрей Горлов - Наставник группы
+
+### Стек используемых технологий:
+
+Django
+DRF
+Docker
