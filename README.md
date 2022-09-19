@@ -61,6 +61,8 @@ docker-compose exec web python manage.py collectstatic --no-input
 
 ### Стек используемых технологий:
 
+```
 Django
 DRF
 Docker
+```
